@@ -1,4 +1,4 @@
-# easy list
+# easy-list
 
 A new Flutter project.
 

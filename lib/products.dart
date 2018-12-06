@@ -8,16 +8,19 @@ class Products extends StatelessWidget {
 
   // this.products stores the incoming argument automatically in a property of the same name.
   // Here, the argument is stored in property - products.
-  Products(this.products);
+  Products(this.products) {
+    print('[Products Widget] Constructor');
+  }
 
   @override
   Widget build(BuildContext context) {
+    print('[Products Widget] Build');
     return Column(
       children: products
           .map((element) => Card(
                 child: Column(
                   children: <Widget>[
-                    Image.asset('assets/food.jpg'),
+                    // Image.asset('assets/food.jpg'),
                     Text(element)
                   ],
                 ),

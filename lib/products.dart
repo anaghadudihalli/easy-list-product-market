@@ -8,7 +8,9 @@ class Products extends StatelessWidget {
 
   // this.products stores the incoming argument automatically in a property of the same name.
   // Here, the argument is stored in property - products.
-  Products(this.products) {
+  // named arguments - {} both cases
+  // positional arguments - optional only in []
+  Products([this.products = const []]) {
     print('[Products Widget] Constructor');
   }
 

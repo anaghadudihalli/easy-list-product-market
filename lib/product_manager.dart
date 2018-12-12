@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import './products.dart';
+import './product_control.dart';
 
 class ProductManager extends StatefulWidget {
   // Even though ProductManager is a Stateful widget it needs to immutable as the changing of data happens in
@@ -28,7 +29,8 @@ class _ProductManagerState extends State<ProductManager> {
   // initState() is run always when State object is initialized.
   void initState() {
     print('[ProductManager Widget] initState()');
-    super.initState(); // this is recommended to have it in the beginning of initState()
+    super
+        .initState(); // this is recommended to have it in the beginning of initState()
     // super always refers to the base class you're extending i.e. 'State'. It always calls initstate() in the base class
     // to make sure it's always called even though it's overridden.
     // widget is used to access properties of ProductManager
@@ -42,22 +44,18 @@ class _ProductManagerState extends State<ProductManager> {
     super.didUpdateWidget(oldWidget);
   }
 
+  void _addProduct(String product) {
+    setState(() {
+      _products.add(product);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     print('[ProductManager State] Build');
     return Column(
       children: [
-        Container(
-          margin: EdgeInsets.all(10.0),
-          child: RaisedButton(
-            onPressed: () {
-              setState(() {
-                _products.add('Advanced Food Tester');
-              });
-            },
-            child: Text('Add Product'),
-          ),
-        ),
+        Container(margin: EdgeInsets.all(10.0), child: ProductControl(_addProduct)),
         Products(_products)
       ],
     );

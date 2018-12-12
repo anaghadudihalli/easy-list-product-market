@@ -4,7 +4,9 @@ import 'package:flutter/rendering.dart';
 import './product_manager.dart';
 
 void main() {
-  debugPaintSizeEnabled = true;
+  debugPaintSizeEnabled = true; // See how widgets are layed out
+  debugPaintBaselinesEnabled = true; // Shows base lines of texts
+  debugPaintPointersEnabled = true; // Shows where the tap event is registered
   runApp(MyApp());
 }
 

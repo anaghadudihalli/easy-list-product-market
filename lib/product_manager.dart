@@ -24,7 +24,6 @@ class ProductManager extends StatefulWidget {
 // _classname indicates that the Class won't be used outside this file.
 class _ProductManagerState extends State<ProductManager> {
   List<String> _products = [];
-  final age = 22;
 
   @override
   // initState() is run always when State object is initialized.
@@ -47,14 +46,7 @@ class _ProductManagerState extends State<ProductManager> {
 
   void _addProduct(String product) {
     setState(() {
-      _products.add(product); // Add edits the existing list and doesn't assign a new one.
-      // Lists and objects are reference types. It only stores reference to objects.
-      // final prevent assigning a new value, editing is allowed.
-      // age = 23; // can't be done as age is final
-      age.round(); // functions are allowed.
-      // If we want the values to never be changed, use 'const'
-      // const age = 22;
-      // age.round(); -> throws the error.
+      _products.add(product);
     });
   }
 
@@ -64,7 +56,8 @@ class _ProductManagerState extends State<ProductManager> {
     return Column(
       children: [
         Container(margin: EdgeInsets.all(10.0), child: ProductControl(_addProduct)),
-        Products(_products)
+        // Expanded takes the remaining space
+        Expanded(child:Products(_products))
       ],
     );
   }

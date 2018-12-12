@@ -28,8 +28,7 @@ class _ProductManagerState extends State<ProductManager> {
   // initState() is run always when State object is initialized.
   void initState() {
     print('[ProductManager Widget] initState()');
-    super
-        .initState(); // this is recommended to have it in the beginning of initState()
+    super.initState(); // this is recommended to have it in the beginning of initState()
     // super always refers to the base class you're extending i.e. 'State'. It always calls initstate() in the base class
     // to make sure it's always called even though it's overridden.
     // widget is used to access properties of ProductManager

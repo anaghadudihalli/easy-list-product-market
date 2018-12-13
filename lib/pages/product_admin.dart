@@ -1,30 +1,47 @@
 import 'package:flutter/material.dart';
 
 import './products.dart';
+import './product_create.dart';
+import './product_list.dart';
 
 class ProductAdminPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: Drawer(
-          child: Column(
-        children: <Widget>[
-          AppBar(title: Text('Choose')),
-          ListTile(
-            title: Text('All Products'),
-            onTap: () => Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                    builder: (BuildContext context) => ProductsPage())),
+    return DefaultTabController(
+        length: 2,
+        child: Scaffold(
+          drawer: Drawer(
+              child: Column(
+            children: <Widget>[
+              AppBar(title: Text('Choose')),
+              ListTile(
+                title: Text('All Products'),
+                onTap: () => Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => ProductsPage())),
+              ),
+            ],
+          )),
+          appBar: AppBar(
+            title: Text('Product Admin'),
+            bottom: TabBar(
+              tabs: <Widget>[
+                Tab(
+                  icon: Icon(Icons.create),
+                  text: 'Create Product',
+                ),
+                Tab(
+                  icon: Icon(Icons.list),
+                  text: 'My Products',
+                )
+              ],
+            ),
           ),
-        ],
-      )),
-      appBar: AppBar(
-        title: Text('Product Admin'),
-      ),
-      body: Center(
-        child: Text("Manage your products"),
-      ),
-    );
+          body: TabBarView(
+            //Tab bar pages are embedded within the main scaffold. They don't replace the original one
+            children: <Widget>[ProductCreatePage(), ProductListPage()],
+          ),
+        ));
   }
 }

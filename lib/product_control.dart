@@ -13,6 +13,7 @@ class ProductControl extends StatelessWidget{
               addProduct({'title': 'Chocolate','image': 'assets/food.jpg'});
             },
             child: Text('Add Product'),
+            color: Theme.of(context).primaryColor,
           );
     }
 }

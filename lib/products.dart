@@ -6,7 +6,7 @@ import 'pages/product.dart';
 class Products extends StatelessWidget {
   // final denotes the values of products will never change. The value is always set from outside. If the value changes,
   // it 'replaces' the old values and calls the build again with the new one but not 'change' it.
-  final List<String> products;
+  final List<Map<String, String>> products;
 
   // this.products stores the incoming argument automatically in a property of the same name.
   // Here, the argument is stored in property - products.
@@ -20,8 +20,8 @@ class Products extends StatelessWidget {
     return Card(
       child: Column(
         children: <Widget>[
-          Image.asset('assets/food.jpg'),
-          Text(products[index]),
+          Image.asset(products[index]['image']),
+          Text(products[index]['title']),
           ButtonBar(
             alignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -30,7 +30,9 @@ class Products extends StatelessWidget {
                 onPressed: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (BuildContext context) => ProductPage())),
+                        builder: (BuildContext context) => ProductPage(
+                            products[index]['title'],
+                            products[index]['image']))),
               )
             ],
           )

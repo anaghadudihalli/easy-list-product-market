@@ -7,7 +7,7 @@ class ProductManager extends StatefulWidget {
   // Even though ProductManager is a Stateful widget it needs to immutable as the changing of data happens in
   // ProductManagerState and not in this class
   // startingProduct is recieved from outside and is updated only when build() is called in the parent component.
-  final String startingProduct;
+  final Map<String, String> startingProduct;
 
   // this.startingProduct stores only the first element in the list.
   // To make this a named argument add '{}' around the argument.
@@ -23,7 +23,7 @@ class ProductManager extends StatefulWidget {
 
 // _classname indicates that the Class won't be used outside this file.
 class _ProductManagerState extends State<ProductManager> {
-  List<String> _products = [];
+  List<Map<String, String>> _products = [];
 
   @override
   // initState() is run always when State object is initialized.
@@ -46,7 +46,7 @@ class _ProductManagerState extends State<ProductManager> {
     super.didUpdateWidget(oldWidget);
   }
 
-  void _addProduct(String product) {
+  void _addProduct(Map<String, String> product) {
     setState(() {
       _products.add(product);
     });

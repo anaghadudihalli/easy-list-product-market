@@ -1,18 +1,68 @@
 import 'package:flutter/material.dart';
 
-class ProductCreatePage extends StatelessWidget {
+class ProductCreatePage extends StatefulWidget {
+  final Function addProduct;
+
+  ProductCreatePage(this.addProduct);
+  @override
+  State<StatefulWidget> createState() {
+    return _ProductCreatePageState();
+  }
+}
+
+class _ProductCreatePageState extends State<ProductCreatePage> {
+  String _titleValue = "";
+  String _descriptionValue = "";
+  double _priceValue = 0.0;
+
   @override
   Widget build(BuildContext context) {
-    return Center(
-        child: RaisedButton(
-      child: Text('Save'),
-      onPressed: () {
-        showModalBottomSheet(
-            context: context,
-            builder: (BuildContext context) {
-              return Center(child: Text('This is a modal'));
-            });
-      },
-    ));
+    return Container(
+        margin: EdgeInsets.all(20.0),
+        child: ListView(
+          children: <Widget>[
+            TextField(
+              decoration: InputDecoration(labelText: 'Product Title'),
+              onChanged: (String value) {
+                setState(() {
+                  _titleValue = value;
+                });
+              },
+            ),
+            TextField(
+                decoration: InputDecoration(labelText: 'Description'),
+                maxLines: 5,
+                onChanged: (String value) {
+                  setState(() {
+                    _descriptionValue = value;
+                  });
+                }),
+            TextField(
+              decoration: InputDecoration(labelText: 'Price'),
+              keyboardType: TextInputType.number,
+              onChanged: (String value) {
+                _priceValue = double.parse(value);
+              },
+            ),
+            SizedBox(
+              height: 10.0,
+            ),
+            RaisedButton(
+              color: Theme.of(context).accentColor,
+              textColor: Colors.white,
+              child: Text('Save'),
+              onPressed: () {
+                final Map<String, dynamic> product = {
+                  'title': _titleValue,
+                  'description': _descriptionValue,
+                  'price': _priceValue,
+                  'image': 'assets/food.jpg'
+                };
+                widget.addProduct(product);
+                Navigator.pushReplacementNamed(context, '/products');
+              },
+            )
+          ],
+        ));
   }
 }

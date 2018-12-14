@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 
-import './products.dart';
 import './product_create.dart';
 import './product_list.dart';
 
 class ProductAdminPage extends StatelessWidget {
+  final Function addProduct;
+  final Function deleteProduct;
+
+  ProductAdminPage(this.addProduct, this.deleteProduct); 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -38,7 +41,7 @@ class ProductAdminPage extends StatelessWidget {
           ),
           body: TabBarView(
             //Tab bar pages are embedded within the main scaffold. They don't replace the original one
-            children: <Widget>[ProductCreatePage(), ProductListPage()],
+            children: <Widget>[ProductCreatePage(addProduct), ProductListPage()],
           ),
         ));
   }

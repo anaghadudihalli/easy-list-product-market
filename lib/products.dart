@@ -65,6 +65,7 @@ class Products extends StatelessWidget {
                 color: Colors.red, 
                 icon: Icon(Icons.favorite_border),
                 iconSize: 35.0,
+                onPressed: (){},
               ),
             ],
           )

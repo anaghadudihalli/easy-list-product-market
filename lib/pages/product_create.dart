@@ -13,41 +13,47 @@ class ProductCreatePage extends StatefulWidget {
 class _ProductCreatePageState extends State<ProductCreatePage> {
   String _titleValue = "";
   String _descriptionValue = "";
-  double _priceValue = 0.0;
+  double _priceValue;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   Widget _buildTitleTextField() {
-    return TextField(
+    return TextFormField(
       decoration: InputDecoration(labelText: 'Product Title'),
-      onChanged: (String value) {
+      onSaved: (String value) {
         setState(() {
           _titleValue = value;
+          print('Title saved');
         });
       },
     );
   }
 
   Widget _buildDescriptionTextField() {
-    return TextField(
+    return TextFormField(
         decoration: InputDecoration(labelText: 'Description'),
         maxLines: 5,
-        onChanged: (String value) {
+        onSaved: (String value) {
           setState(() {
             _descriptionValue = value;
+            print('Title saved');
           });
         });
   }
 
   Widget _buildPriceTextField() {
-    return TextField(
-      decoration: InputDecoration(labelText: 'Price'),
-      keyboardType: TextInputType.number,
-      onChanged: (String value) {
-        _priceValue = double.parse(value);
-      },
-    );
+    return TextFormField(
+        decoration: InputDecoration(labelText: 'Price'),
+        keyboardType: TextInputType.number,
+        onSaved: (String value) {
+          setState(() {
+            _priceValue = double.parse(value);
+            print('Title saved');
+          });
+        });
   }
 
   void _submitForm() {
+    _formKey.currentState.save();
     final Map<String, dynamic> product = {
       'title': _titleValue,
       'description': _descriptionValue,
@@ -64,8 +70,10 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
     final double targetWidth = deviceWidth > 550.0 ? 500.0 : deviceWidth * 0.95;
     final double targetPadding = deviceWidth - targetWidth;
     return Container(
-        width: targetWidth,
-        margin: EdgeInsets.all(20.0),
+      width: targetWidth,
+      margin: EdgeInsets.all(20.0),
+      child: Form(
+        key: _formKey,
         child: ListView(
           padding: EdgeInsets.symmetric(horizontal: targetPadding / 2),
           children: <Widget>[
@@ -76,13 +84,14 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
               height: 10.0,
             ),
             RaisedButton(
-              color: Theme.of(context).accentColor,
               textColor: Colors.white,
               child: Text('Save'),
               onPressed:
                   _submitForm, // not calling the function, just referencing
             )
           ],
-        ));
+        ),
+      ),
+    );
   }
 }

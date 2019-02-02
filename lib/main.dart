@@ -39,7 +39,8 @@ class _MyAppState extends State<MyApp> {
           // Static properties(deepOrange) are properties of a class that can be accessed without instantiating the class
           primarySwatch: Colors.deepOrange,
           brightness: Brightness.light,
-          accentColor: Colors.deepPurple),
+          accentColor: Colors.deepPurple,
+          buttonColor: Colors.deepPurple),
       // home: AuthPage(),
       routes: {
         // home and / won't work at the same time because they are essentially the same
